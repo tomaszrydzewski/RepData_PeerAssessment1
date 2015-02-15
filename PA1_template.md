@@ -55,6 +55,21 @@ plot(stepsPerInterval$interval,stepsPerInterval$average,type="l",ylab="Average S
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
+## What is interval with the max average number ofsteps
+
+```r
+interval <- stepsPerInterval[stepsPerInterval$average==max(stepsPerInterval$average),"interval"]
+interval 
+```
+
+```
+## [1] 835
+```
+The interval with the maimum averagenumber of steps is 835
+
+
+
+
 
 ## Imputing missing values
 
@@ -65,6 +80,8 @@ nErrObs=nrow(data)-nrow(cleanData)
 ```
 Total number of NAs is 2304
 
+###Description of the strategy 
+For each NA i will find the average number of steps for that interval and substitute it
 
 
 ```r
@@ -81,7 +98,7 @@ cdataSub <- ddply(dataSub, c("date"), summarise,sum    = sum(steps))
 hist(cdataSub$sum,main="Histograms of Steps per day",xlab = "Number of steps per day")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-5-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-6-1.png) 
 
 ### Mean and median
 
@@ -130,7 +147,7 @@ plot(aggregatedDataWeekday$interval,aggregatedDataWeekday$average,type="l",main=
 plot(aggregatedDataWeekend$interval,aggregatedDataWeekend$average,type="l",main="Weekend",ylab="Avg number of steps",xlab="Interval")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-7-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-8-1.png) 
 The results indicate that we seem to be more active during the weekends  - probably since most of us sit at work. 
 
 

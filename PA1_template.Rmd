@@ -35,6 +35,16 @@ The mean of the steps per day is `r mean` and the median is `r median`
 stepsPerInterval <- ddply(cleanData, c("interval"), summarise,average    = mean(steps))
 plot(stepsPerInterval$interval,stepsPerInterval$average,type="l",ylab="Average Steps Taken",xlab="Interval")
 ```
+## What is interval with the max average number ofsteps
+```{r}
+interval <- stepsPerInterval[stepsPerInterval$average==max(stepsPerInterval$average),"interval"]
+interval 
+```
+The interval with the maimum averagenumber of steps is `r interval`
+
+
+
+
 
 ## Imputing missing values
 
@@ -44,6 +54,8 @@ nErrObs=nrow(data)-nrow(cleanData)
 ```
 Total number of NAs is `r nErrObs`
 
+###Description of the strategy 
+For each NA i will find the average number of steps for that interval and substitute it
 
 ```{r}
 dataSub<-data
